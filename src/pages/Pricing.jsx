@@ -7,22 +7,58 @@ import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
 
 export default function Pricing() {
-  // Calculator state
+  // Calculator Category State
+  const [projectCategory, setProjectCategory] = useState('website'); // 'website' or 'webapp'
   const [pagesCount, setPagesCount] = useState(5);
-  const [hasDatabase, setHasDatabase] = useState(false);
-  const [hasAuth, setHasAuth] = useState(false);
-  const [hasAnalytics, setHasAnalytics] = useState(false);
+
+  // Website checkbox state variables
+  const [webDb, setWebDb] = useState(false);
+  const [webAuth, setWebAuth] = useState(false);
+  const [webMaps, setWebMaps] = useState(false);
+  const [webEcommerce, setWebEcommerce] = useState(false);
+  const [webAi, setWebAi] = useState(false);
+  const [webSeo, setWebSeo] = useState(false);
+  const [webHosting, setWebHosting] = useState(false);
+  const [webMaintenance, setWebMaintenance] = useState(false);
+
+  // Web App checkbox state variables
+  const [appDb, setAppDb] = useState(false);
+  const [appAuth, setAppAuth] = useState(false);
+  const [appAnalytics, setAppAnalytics] = useState(false);
+  const [appAi, setAppAi] = useState(false);
+  const [appWhatsapp, setAppWhatsapp] = useState(false);
+  const [appHosting, setAppHosting] = useState(false);
+  const [appMaintenance, setAppMaintenance] = useState(false);
 
   const calculateEstimate = () => {
-    let base = 8000;
-    // Pages cost: ₹800 per page after page 3
-    if (pagesCount > 3) {
-      base += (pagesCount - 3) * 800;
+    if (projectCategory === 'website') {
+      let total = 8000; // Website base rate
+      if (pagesCount > 3) {
+        total += (pagesCount - 3) * 800; // ₹800 per page after 3
+      }
+      if (webDb) total += 12000;
+      if (webAuth) total += 5000;
+      if (webMaps) total += 2000;
+      if (webEcommerce) total += 15000;
+      if (webAi) total += 15000;
+      if (webSeo) total += 6000;
+      if (webHosting) total += 8000;
+      if (webMaintenance) total += 5000;
+      return total;
+    } else {
+      let total = 20000; // Web Application base rate
+      if (pagesCount > 3) {
+        total += (pagesCount - 3) * 1500; // ₹1,500 per page after 3
+      }
+      if (appDb) total += 15000;
+      if (appAuth) total += 7000;
+      if (appAnalytics) total += 10000;
+      if (appAi) total += 15000;
+      if (appWhatsapp) total += 10000;
+      if (appHosting) total += 12000;
+      if (appMaintenance) total += 8000;
+      return total;
     }
-    if (hasDatabase) base += 12000;
-    if (hasAuth) base += 5000;
-    if (hasAnalytics) base += 7000;
-    return base;
   };
 
   const pricingTiers = [
@@ -81,6 +117,20 @@ export default function Pricing() {
       ],
       popular: false,
       color: "var(--color-primary)"
+    },
+    {
+      title: "AI Integration",
+      price: "₹30,000",
+      desc: "Connect neural language models and automated messaging to streamline workflows.",
+      features: [
+        "Custom Business GPT Assistant",
+        "Autonomous Lead Capture Agents",
+        "Official WhatsApp API Broadcasting",
+        "External Database & API Sync",
+        "12 Months Support & Retraining"
+      ],
+      popular: false,
+      color: "var(--color-secondary)"
     }
   ];
 
@@ -216,19 +266,45 @@ export default function Pricing() {
 
           </div>
 
-          {/* Pricing Calculator Mockup */}
-          <Tilt3D className="glass-card" style={{ maxWidth: '800px', margin: '0 auto 4rem auto', padding: '3rem' }}>
+          {/* Pricing Calculator */}
+          <Tilt3D className="glass-card" style={{ maxWidth: '950px', margin: '0 auto 4rem auto', padding: '3rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2rem' }}>
               <Calculator size={24} style={{ color: 'var(--color-primary)' }} />
               <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', margin: 0 }}>Interactive Price Calculator</h3>
             </div>
 
+            {/* Project Category Toggle (Website vs Custom Web App) */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', gap: '1rem' }}>
+              <button
+                onClick={() => {
+                  setProjectCategory('website');
+                  setPagesCount(5);
+                }}
+                className={`tab-btn ${projectCategory === 'website' ? 'active' : ''}`}
+                style={{ flex: 1, maxWidth: '200px' }}
+              >
+                Website
+              </button>
+              <button
+                onClick={() => {
+                  setProjectCategory('webapp');
+                  setPagesCount(5);
+                }}
+                className={`tab-btn ${projectCategory === 'webapp' ? 'active' : ''}`}
+                style={{ flex: 1, maxWidth: '200px' }}
+              >
+                Custom Web App
+              </button>
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2.5rem' }} className="calc-grid">
               {/* Controls */}
               <div>
-                <div style={{ marginBottom: '2rem' }}>
+                <div style={{ marginBottom: '2.5rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.8rem' }}>
-                    <label style={{ fontSize: '0.95rem', fontWeight: 600 }}>Number of Pages: {pagesCount}</label>
+                    <label style={{ fontSize: '0.95rem', fontWeight: 600 }}>
+                      {projectCategory === 'website' ? 'Number of Pages' : 'Number of Interface Views'}: {pagesCount}
+                    </label>
                   </div>
                   <input 
                     type="range" 
@@ -239,40 +315,154 @@ export default function Pricing() {
                     style={{ width: '100%', accentColor: 'var(--color-primary)' }}
                   />
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.3rem' }}>
-                    <span>1 Page</span>
-                    <span>20 Pages</span>
+                    <span>1 {projectCategory === 'website' ? 'Page' : 'View'}</span>
+                    <span>20 {projectCategory === 'website' ? 'Pages' : 'Views'}</span>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.92rem' }}>
-                    <input 
-                      type="checkbox" 
-                      checked={hasDatabase} 
-                      onChange={(e) => setHasDatabase(e.target.checked)}
-                      style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)' }}
-                    />
-                    Requires Database / User Storage (+₹12,000)
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.92rem' }}>
-                    <input 
-                      type="checkbox" 
-                      checked={hasAuth} 
-                      onChange={(e) => setHasAuth(e.target.checked)}
-                      style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)' }}
-                    />
-                    Requires User Accounts & Login (+₹5,000)
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.92rem' }}>
-                    <input 
-                      type="checkbox" 
-                      checked={hasAnalytics} 
-                      onChange={(e) => setHasAnalytics(e.target.checked)}
-                      style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)' }}
-                    />
-                    Custom Admin Dashboard Metrics (+₹7,000)
-                  </label>
-                </div>
+                {/* Checkbox Options depending on Website vs Web App */}
+                {projectCategory === 'website' ? (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.2rem' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webDb} 
+                        onChange={(e) => setWebDb(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Database Setup & User Storage
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webAuth} 
+                        onChange={(e) => setWebAuth(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      User Login & Profile Accounts
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webMaps} 
+                        onChange={(e) => setWebMaps(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Google Maps & Social Link Integrations
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webEcommerce} 
+                        onChange={(e) => setWebEcommerce(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      E-Commerce Storefront (Catalog/Cart/Checkout)
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webAi} 
+                        onChange={(e) => setWebAi(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Interactive AI Chatbot Assistant
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webSeo} 
+                        onChange={(e) => setWebSeo(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      SEO Setup & Performance Audit Pack
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webHosting} 
+                        onChange={(e) => setWebHosting(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Domain & Annual Cloud Server Hosting
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={webMaintenance} 
+                        onChange={(e) => setWebMaintenance(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Monthly Site Backups & Maintenance SLA
+                    </label>
+                  </div>
+                ) : (
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.2rem' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appDb} 
+                        onChange={(e) => setAppDb(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Database Systems & Complex Schema Modelling
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appAuth} 
+                        onChange={(e) => setAppAuth(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Granular User Roles & Permissions Setup
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appAnalytics} 
+                        onChange={(e) => setAppAnalytics(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Admin Analytics Dashboard & Interactive Charts
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appAi} 
+                        onChange={(e) => setAppAi(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Neural AI Custom Agent Integration
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appWhatsapp} 
+                        onChange={(e) => setAppWhatsapp(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      WhatsApp API Gateway & Bot Automation
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appHosting} 
+                        onChange={(e) => setAppHosting(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Secure Auto-scaling Infrastructure & SSL Setup
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-main)' }}>
+                      <input 
+                        type="checkbox" 
+                        checked={appMaintenance} 
+                        onChange={(e) => setAppMaintenance(e.target.checked)}
+                        style={{ width: '18px', height: '18px', accentColor: 'var(--color-primary)', flexShrink: 0 }}
+                      />
+                      Priority Developer SLA Support
+                    </label>
+                  </div>
+                )}
               </div>
 
               {/* Estimate Display */}
@@ -328,10 +518,32 @@ export default function Pricing() {
       <style>{`
         .pricing-grid-layout {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
           gap: 2rem !important;
         }
-        @media (min-width: 768px) {
+        .tab-btn {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid var(--border-glass);
+          color: var(--text-muted);
+          padding: 0.7rem 1.4rem;
+          border-radius: var(--border-radius-full);
+          font-weight: 600;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+          background: rgba(255, 255, 255, 0.08);
+          color: var(--text-main);
+          border-color: var(--border-glass-glow);
+        }
+        .tab-btn.active {
+          background: var(--gradient-primary);
+          color: #fff;
+          border-color: transparent;
+          box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        @media (min-width: 992px) {
           .calc-grid {
             grid-template-columns: 3fr 2fr !important;
           }

@@ -98,7 +98,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}>
+            <div data-cursor-text="Drag" style={{ position: 'relative', width: '100%', height: '100%', minHeight: '400px' }}>
               <div className="spotlight" style={{ top: '-10%', left: '-10%' }} />
               <ThreeHero />
             </div>
@@ -231,7 +231,7 @@ export default function Home() {
           <div className="grid-3">
             {projects.map((p, idx) => (
               <Tilt3D key={idx}>
-                <div className="glass-card" style={{ padding: 0, overflow: 'hidden', height: '100%' }}>
+                <div className="glass-card" data-cursor-text="View" style={{ padding: 0, overflow: 'hidden', height: '100%' }}>
                   <div style={{ 
                     background: p.gradient, 
                     height: '200px', 

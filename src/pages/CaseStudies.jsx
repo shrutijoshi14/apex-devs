@@ -117,7 +117,7 @@ export default function CaseStudies() {
 
           {/* Active Case Study Details */}
           <Tilt3D>
-            <div className="glass-card case-study-card" style={{ padding: '3rem', height: '100%' }}>
+            <div className="glass-card case-study-card" data-cursor-text="Read" style={{ padding: '3rem', height: '100%' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem' }} className="case-study-grid">
                 
                 {/* Left Column: Details */}

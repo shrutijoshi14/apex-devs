@@ -100,7 +100,7 @@ export default function Portfolio() {
           <div className="portfolio-projects-list" style={{ display: 'flex', flexDirection: 'column', gap: '4rem', marginTop: '3rem' }}>
             {filteredProjects.map((project, idx) => (
               <Tilt3D key={idx}>
-                <div className="glass-card" style={{ padding: '0', overflow: 'hidden', height: '100%' }}>
+                <div className="glass-card" data-cursor-text="View" style={{ padding: '0', overflow: 'hidden', height: '100%' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0' }} className="project-grid-row">
                     {/* Left Column - Graphic Placeholder */}
                     <div style={{ 

@@ -119,7 +119,13 @@ button, input, select, textarea {
 
 /* Custom Cursor (Trailing Gooey & Snapping) */
 @media (pointer: fine) {
-  body, a, button, select, input, textarea, [role="button"], .glass-card, .btn, .filter-btn {
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active [role="button"],
+  body.custom-cursor-active .glass-card,
+  body.custom-cursor-active .btn,
+  body.custom-cursor-active .filter-btn {
     cursor: none !important;
   }
 }
