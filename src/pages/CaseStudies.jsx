@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Award, CheckCircle } from 'lucide-react';
-import ParticleBackground from '../components/ParticleBackground';
 import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
 
@@ -69,7 +68,6 @@ export default function CaseStudies() {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ParticleBackground />
 
       {/* Header Banner */}
       <section className="section" style={{ paddingTop: '7rem', paddingBottom: '3.5rem' }}>

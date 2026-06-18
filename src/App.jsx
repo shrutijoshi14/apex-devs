@@ -15,6 +15,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import CustomCursor from './components/CustomCursor';
 import ChatbotWidget from './components/ChatbotWidget';
+import ParticleBackground from './components/ParticleBackground';
 
 // Register GSAP ScrollTrigger Plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -279,6 +280,9 @@ export default function App() {
 
       {/* Interactive Custom Mouse Follower */}
       <CustomCursor />
+
+      {/* Global Background Animation */}
+      {!loading && <ParticleBackground />}
 
       {/* Premium AI Chatbot Assistant */}
       <ChatbotWidget />

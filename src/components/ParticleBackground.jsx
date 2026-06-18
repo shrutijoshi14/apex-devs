@@ -148,16 +148,19 @@ export default function ParticleBackground() {
   }, []);
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      zIndex: 0,
-      pointerEvents: 'none',
-      overflow: 'hidden'
-    }}>
+    <div 
+      className="animated-gradient-bg"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1,
+        pointerEvents: 'none',
+        overflow: 'hidden'
+      }}
+    >
       <div className="bg-blob blob-purple" />
       <div className="bg-blob blob-cyan" />
       <div className="bg-blob blob-pink" />

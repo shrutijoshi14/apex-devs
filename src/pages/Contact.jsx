@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, Phone, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
-import ParticleBackground from '../components/ParticleBackground';
 import Magnetic from '../components/Magnetic';
 import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
@@ -78,7 +77,6 @@ export default function Contact() {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ParticleBackground />
 
       {/* Header Banner */}
       <section className="section" style={{ paddingTop: '7rem', paddingBottom: '3.5rem' }}>

@@ -6,7 +6,6 @@ import {
 import ThreeHero from '../components/ThreeHero';
 import CountUp from '../components/CountUp';
 import Testimonials from '../components/Testimonials';
-import ParticleBackground from '../components/ParticleBackground';
 import Magnetic from '../components/Magnetic';
 import Tilt3D from '../components/Tilt3D';
 
@@ -63,7 +62,6 @@ export default function Home() {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ParticleBackground />
 
       {/* Hero Section */}
       <section className="section" style={{ minHeight: '90vh', display: 'flex', alignItems: 'center', paddingTop: '4rem' }}>

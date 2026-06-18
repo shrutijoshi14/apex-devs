@@ -32,7 +32,8 @@ export default function CustomCursor() {
   // Spawn star sparkles on cursor movement
   const spawnParticles = (x, y) => {
     // Avoid spawning too many particles when snapped to reduce visual noise
-    const spawnCount = isSnappedRef.current ? 1 : 2;
+    // Also reduce spawn rate (e.g. only spawn on chance to decrease stars effect)
+    const spawnCount = isSnappedRef.current ? 0 : (Math.random() > 0.45 ? 1 : 0);
     for (let i = 0; i < spawnCount; i++) {
       particlesRef.current.push({
         x,
@@ -41,7 +42,7 @@ export default function CustomCursor() {
         vy: (Math.random() - 0.5) * 3 - 0.4, // float slightly upward
         size: 5 + Math.random() * 8, // larger stars for premium looks
         life: 1.0,
-        decay: 0.012 + Math.random() * 0.015, // slower decay for longer visible trail
+        decay: 0.022 + Math.random() * 0.02, // faster decay so trail is shorter and cleaner
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.08,
         color: Math.random() > 0.5 ? 'rgba(6, 182, 212, ' : 'rgba(139, 92, 246, ' // cyan or purple
@@ -91,15 +92,15 @@ export default function CustomCursor() {
       const dy = e.clientY - lastMouse.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      if (dist > 8) {
-        const steps = Math.min(8, Math.floor(dist / 10));
+      if (dist > 12) {
+        const steps = Math.min(3, Math.floor(dist / 24));
         for (let s = 1; s <= steps; s++) {
           const ratio = s / steps;
           const px = lastMouse.current.x + dx * ratio;
           const py = lastMouse.current.y + dy * ratio;
           spawnParticles(px, py);
         }
-      } else {
+      } else if (dist > 4) {
         spawnParticles(e.clientX, e.clientY);
       }
 

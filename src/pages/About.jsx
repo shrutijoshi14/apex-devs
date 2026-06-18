@@ -1,5 +1,4 @@
 import { Shield, Target, Compass, Code, Layout, Database, Wrench, Cpu } from 'lucide-react';
-import ParticleBackground from '../components/ParticleBackground';
 import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
 
@@ -39,7 +38,6 @@ export default function About() {
 
   return (
     <div style={{ position: 'relative' }}>
-      <ParticleBackground />
 
       {/* Header Banner */}
       <section className="section" style={{ paddingTop: '7rem', paddingBottom: '4rem' }}>
