@@ -212,6 +212,13 @@ export default function ThreeHero() {
       isDragging = false;
     };
 
+    let scrollY = window.scrollY;
+    let smoothedScrollY = window.scrollY;
+    const handleScroll = () => {
+      scrollY = window.scrollY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     window.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mousedown', handleDragStart);
     container.addEventListener('touchstart', handleDragStart, { passive: true });
@@ -301,8 +308,15 @@ export default function ThreeHero() {
         }
       }
 
-      // 1. Gently float the entire assembly
-      portalGroup.position.y = Math.sin(elapsedTime * 1.2) * 0.12;
+      // Smooth scroll interpolation
+      smoothedScrollY += (scrollY - smoothedScrollY) * 0.085;
+
+      // 1. Gently float the entire assembly and pull it down/back as page scrolls
+      portalGroup.position.y = (Math.sin(elapsedTime * 1.2) * 0.12) - (smoothedScrollY * 0.0016);
+      
+      const scrollScale = Math.max(0.35, 1 - (smoothedScrollY * 0.0014));
+      portalGroup.scale.set(scrollScale, scrollScale, scrollScale);
+      portalGroup.position.z = -smoothedScrollY * 0.0035;
 
       // 2. Liquid scale morphing (Mercury bubble ripple effect)
       const scaleX = 1 + Math.sin(elapsedTime * 2.0) * 0.04;
@@ -342,7 +356,9 @@ export default function ThreeHero() {
         targetX = mouseX * 0.35;
         targetY = mouseY * 0.25;
 
-        portalGroup.rotation.y += (targetX - portalGroup.rotation.y) * 0.05;
+        // Add scroll-dependent spin
+        const scrollSpin = smoothedScrollY * 0.0016;
+        portalGroup.rotation.y += (targetX + scrollSpin - portalGroup.rotation.y) * 0.05;
         portalGroup.rotation.x += (targetY - portalGroup.rotation.x) * 0.05;
       }
 
@@ -374,6 +390,7 @@ export default function ThreeHero() {
 
     // Clean up
     return () => {
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mousedown', handleDragStart);
       container.removeEventListener('touchstart', handleDragStart);

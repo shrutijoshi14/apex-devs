@@ -45,13 +45,13 @@ export default function ChatbotWidget() {
   const getBotResponse = (query) => {
     const q = query.toLowerCase();
     if (q.includes('service') || q.includes('capabilities') || q.includes('do you do') || q.includes('build')) {
-      return "We engineer premium websites, SaaS web applications, CRM solutions, school/institute management ERP tools, e-commerce marketplaces, and custom third-party integrations.";
+      return "We develop premium websites, SaaS web applications, CRM solutions, school/institute management ERP tools, e-commerce marketplaces, and custom third-party integrations.";
     }
     if (q.includes('price') || q.includes('cost') || q.includes('pricing') || q.includes('charge') || q.includes('rate')) {
       return "Our Starter sites start at ₹8,000, Business portals at ₹15,000, E-Commerce platforms at ₹25,000, and customized CRM databases from ₹40,000. You can estimate your project costs directly using the calculator on our Pricing page!";
     }
     if (q.includes('contact') || q.includes('consult') || q.includes('meet') || q.includes('hire') || q.includes('call') || q.includes('book')) {
-      return "You can get in touch with our engineering team by filling out the consultation form on our Contact page. We will assess your requirements and respond within 24 hours!";
+      return "You can get in touch with our development team by filling out the consultation form on our Contact page. We will assess your requirements and respond within 24 hours!";
     }
     if (q.includes('stack') || q.includes('tech') || q.includes('technology') || q.includes('react') || q.includes('node')) {
       return "We build robust, modern apps utilizing React, Vite, Node.js (Express), MongoDB, MySQL Database, and GSAP ScrollTrigger for hardware-accelerated animations.";

@@ -113,9 +113,9 @@ export default function CustomCursor() {
       const target = e.target;
       if (!target) return;
 
-      // Disable custom cursor and show browser cursor on input fields for usability
-      const isInput = target.closest('input:not([type="range"]), textarea, select');
-      if (isInput) {
+      // Disable custom cursor and show browser cursor on input fields and cookie consent card for usability
+      const isNormalCursorZone = target.closest('input:not([type="range"]), textarea, select, .cookie-consent-card');
+      if (isNormalCursorZone) {
         setIsVisible(false);
         setIsHovered(false);
         isHoveredRef.current = false;

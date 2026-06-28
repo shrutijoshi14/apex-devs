@@ -46,7 +46,7 @@ export default function About() {
             <div style={{ textAlign: 'left' }}>
               <span className="section-tag" style={{ display: 'inline-block', marginBottom: '0.8rem' }}>Who We Are</span>
               <h1 style={{ fontSize: 'clamp(2rem, 4.2vw, 3rem)', lineHeight: '1.2', fontWeight: 700, marginBottom: '1.5rem' }}>
-                Empowering Growth Through <span className="gradient-text">Premium Engineering</span>
+                Empowering Growth Through <span className="gradient-text">Premium Development</span>
               </h1>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '540px' }}>
                 We specialize in creating modern websites and custom web applications that help businesses streamline operations and scale online.
@@ -128,10 +128,10 @@ export default function About() {
       <section className="section">
         <div className="container">
           <div className="section-heading-container">
-            <span className="section-tag">Engineering Focus</span>
+            <span className="section-tag">Development Focus</span>
             <h2 className="section-title">Professional Solutions</h2>
             <p className="section-desc">
-              We design and construct client-ready systems engineered to optimize operations and support business growth.
+              We design and construct client-ready systems built to optimize operations and support business growth.
             </p>
           </div>
 

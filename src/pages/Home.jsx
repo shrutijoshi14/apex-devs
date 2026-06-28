@@ -31,22 +31,25 @@ export default function Home() {
 
   const projects = [
     {
-      title: "Institute Management System",
-      desc: "An enterprise ERP managing operations for large institutes: automating admissions, attendance, fees collection, and grades management.",
-      tech: ["React", "Express.js", "MySQL", "ChartJS"],
-      gradient: "linear-gradient(135deg, #3b82f6, #8b5cf6)"
+      title: "Code Insight Academy",
+      desc: "An advanced e-learning academy dashboard designed for programming courses, featuring video lectures, student progress metrics, and course certificates.",
+      tech: ["React.js", "Node.js", "MongoDB", "Express.js"],
+      gradient: "linear-gradient(135deg, #06b6d4, #10b981)",
+      link: "https://codeinsightacademy.com"
     },
     {
-      title: "Custom CRM Solution",
-      desc: "A bespoke client relations platform designed for tracking leads, customer support tickets, and scheduling automatic sales emails.",
-      tech: ["React.js", "Node.js", "MongoDB", "REST APIs"],
-      gradient: "linear-gradient(135deg, #10b981, #06b6d4)"
+      title: "PIB Insurance",
+      desc: "A responsive portal for premium insurance agents. Features policy calculators, customer document upload engines, and agent dashboard grids.",
+      tech: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)",
+      link: "https://pibinsurance.in"
     },
     {
-      title: "Personal Budget Planner",
-      desc: "A smart personal finance manager application featuring interactive analytics charts, expense categories, and monthly budget limits.",
-      tech: ["React.js", "HTML5/CSS3", "JavaScript"],
-      gradient: "linear-gradient(135deg, #f59e0b, #ec4899)"
+      title: "GP Sheledadhare",
+      desc: "Official citizen portal and administrative website for Gram Panchayat Sheledadhare, facilitating digital certificate queries and village notifications.",
+      tech: ["React.js", "Vite", "Vanilla CSS", "REST APIs"],
+      gradient: "linear-gradient(135deg, #ef4444, #f59e0b)",
+      link: "https://gpsheledadhare.co.in"
     }
   ];
 
@@ -71,7 +74,7 @@ export default function Home() {
               {/* Premium Category Pill */}
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.2)', padding: '0.4rem 1rem', borderRadius: '50px', marginBottom: '1.5rem' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--color-secondary)', display: 'inline-block', boxShadow: '0 0 8px var(--color-secondary)' }} />
-                <span style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: '0.78rem', fontFamily: 'var(--font-display)' }}>Next-Gen Web Engineering</span>
+                <span style={{ color: 'var(--color-primary)', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', fontSize: '0.78rem', fontFamily: 'var(--font-display)' }}>Next-Gen Web Development</span>
               </div>
               
               <h1 style={{ fontSize: 'clamp(1.5rem, 3.2vw, 2.2rem)', lineHeight: '1.25', letterSpacing: '-0.015em', marginBottom: '1.5rem', fontWeight: 600 }}>
@@ -111,7 +114,7 @@ export default function Home() {
             <span className="section-tag">Capabilities</span>
             <h2 className="section-title">Our Web Solutions</h2>
             <p className="section-desc">
-              We design and construct premium cloud applications and responsive websites engineered for business growth.
+              We design and construct premium cloud applications and responsive websites built for business growth.
             </p>
           </div>
 
@@ -223,7 +226,7 @@ export default function Home() {
           <div className="section-heading-container">
             <span className="section-tag">Portfolio</span>
             <h2 className="section-title">Featured Case Showcases</h2>
-            <p className="section-desc">Explore some of the high-end applications and websites built by our engineers.</p>
+            <p className="section-desc">Explore some of the high-end applications and websites built by our team.</p>
           </div>
 
           <div className="grid-3">
@@ -299,7 +302,7 @@ export default function Home() {
         <div className="container">
           <div className="section-heading-container">
             <span className="section-tag">Workflows</span>
-            <h2 className="section-title">Engineered For Delivery</h2>
+            <h2 className="section-title">Structured For Delivery</h2>
             <p className="section-desc">Our structured roadmap ensures project alignment, timely milestones, and premium code releases.</p>
           </div>
 

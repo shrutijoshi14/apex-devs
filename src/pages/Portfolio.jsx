@@ -3,52 +3,93 @@ import { ExternalLink, Layers } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
 import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
+import Modal3D from '../components/Modal3D';
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleOpenProjectModal = (project) => {
+    setSelectedProject(project);
+    setModalOpen(true);
+  };
 
   const categories = ['All', 'Websites', 'SaaS Applications', 'Automation & ERP'];
 
   const projects = [
     {
-      title: "Institute Management System",
-      category: "Automation & ERP",
-      desc: "A comprehensive administrative dashboard built for institutional operation management. It manages everything from admissions and attendance to fee calculations, online classes, exams scoring, and reports generating.",
-      features: ["Full Billing and Fees Ledger", "Interactive Student Attendance Sheet", "Granular Staff Roles & Permissions"],
-      tech: ["React.js", "Express.js", "MySQL Database", "Chart.js"],
-      gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)"
-    },
-    {
-      title: "Enterprise CRM Solution",
-      category: "SaaS Applications",
-      desc: "A custom customer relations manager designed to organize leads, log sales activity, build workflows, and trigger automated follow-up email sequences for marketing teams.",
-      features: ["Drag-and-Drop Deal Pipelines", "Email Campaign Scheduling Engine", "Automated Daily Activity Logs"],
-      tech: ["React.js", "Node.js", "MongoDB", "Tailwind CSS", "JWT Auth"],
-      gradient: "linear-gradient(135deg, #06b6d4, #10b981)"
-    },
-    {
-      title: "Personal Budget Planner",
-      category: "SaaS Applications",
-      desc: "A smart web app that tracks monthly revenues, catalogs expenses, aggregates transaction data, and displays real-time budget limit alerts with visualizations.",
-      features: ["Real-time Expenditure Graphs", "Monthly Budget Limit Alerts", "CSV Transaction Logs Exporting"],
-      tech: ["HTML5", "CSS3", "JavaScript", "React.js", "Local Storage"],
-      gradient: "linear-gradient(135deg, #ec4899, #f59e0b)"
-    },
-    {
-      title: "Premium Catering Website",
+      title: "Code Insight Academy",
       category: "Websites",
-      desc: "A responsive business web presence for an elite catering firm. Integrates custom menu catalogs, service booking inquiry forms, and customer testimonial sliders.",
-      features: ["Interactive Event Menu Selector", "Secure Party Booking Inquiry Form", "Google Map Venue Integrations"],
-      tech: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "React.js"],
-      gradient: "linear-gradient(135deg, #ef4444, #f59e0b)"
+      desc: "An advanced e-learning academy dashboard designed for programming courses, featuring video lectures, student progress metrics, and course certificates.",
+      features: ["Interactive Lecture Viewer", "Secure Course Purchasing Ledger", "Automated Student Progress Metrics"],
+      tech: ["React.js", "Node.js", "MongoDB", "Express.js"],
+      gradient: "linear-gradient(135deg, #06b6d4, #10b981)",
+      link: "https://codeinsightacademy.com"
     },
     {
-      title: "Product Management Website",
+      title: "PIB Insurance",
       category: "Websites",
-      desc: "A sleek product listing and catalog website with category grouping, advanced text search tools, filters, and product details query prompts.",
-      features: ["Instant Search & Filter Systems", "Detailed Query Prompts", "Optimized Image Grid Loaders"],
+      desc: "A responsive portal for premium insurance agents. Features policy calculators, customer document upload engines, and agent dashboard grids.",
+      features: ["Dynamic Policy Premium Calculator", "Secure Document Upload Portals", "Agent Performance Tracking Graphs"],
+      tech: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)",
+      link: "https://pibinsurance.in"
+    },
+    {
+      title: "GP Sheledadhare",
+      category: "Websites",
+      desc: "Official citizen portal and administrative website for Gram Panchayat Sheledadhare, facilitating digital certificate queries and village notifications.",
+      features: ["Certificate Request Dashboard", "Village Development Notifications", "Public Grievance Submission Forms"],
       tech: ["React.js", "Vite", "Vanilla CSS", "REST APIs"],
-      gradient: "linear-gradient(135deg, #6366f1, #d946ef)"
+      gradient: "linear-gradient(135deg, #ef4444, #f59e0b)",
+      link: "https://gpsheledadhare.co.in"
+    },
+    {
+      title: "AIpreneur",
+      category: "Websites",
+      desc: "An advanced business landing page and community portal built for AI entrepreneurs. Featuring neon glassmorphism UI layouts and interactive calculators.",
+      features: ["Interactive Startup Cost Calculator", "Secure Subscriber Database", "Modern Glassmorphic Visuals"],
+      tech: ["React.js", "GSAP ScrollTrigger", "Lenis Scroll", "CSS3"],
+      gradient: "linear-gradient(135deg, #6366f1, #d946ef)",
+      link: "https://shrutijoshi14.github.io/aipreneur/"
+    },
+    {
+      title: "Personal Portfolio",
+      category: "Websites",
+      desc: "A visually striking developer showcase website featuring smooth custom cursor trails, SVG micro-animations, and dynamic visual grids.",
+      features: ["Custom Cursor Trail & Sparks", "Responsive Case Study Modals", "Optimized Fluid Layouts"],
+      tech: ["React.js", "Vite", "GSAP Animations", "CSS Modules"],
+      gradient: "linear-gradient(135deg, #ec4899, #f59e0b)",
+      link: "https://shrutijoshi14.github.io/personal-portfolio/"
+    },
+    {
+      title: "Apex Devs Website",
+      category: "Websites",
+      desc: "The next-generation agency landing page for Apex Devs, displaying service offerings, interactive cost estimators, and AI clone assistants.",
+      features: ["AI Chatbot Widget Integration", "3D Interactive Hero Canvas", "Flexible Price Calculators"],
+      tech: ["React.js", "Three.js", "GSAP Animations", "Vite"],
+      gradient: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+      link: "https://shrutijoshi14.github.io/apex-devs/"
+    },
+    {
+      title: "Institute Hub",
+      category: "Automation & ERP",
+      desc: "An all-in-one administrative hub designed to streamline operations for schools and colleges, managing student databases, admissions, fees, and enquiries.",
+      features: ["Comprehensive Student Database Ledger", "Interactive Invoicing and Inbound Fees Tracker", "Query Scoping and Ticket Escalation System"],
+      tech: ["React.js", "Express.js", "MySQL Database", "Bootstrap"],
+      gradient: "linear-gradient(135deg, #ef4444, #ec4899)",
+      link: "https://institute-hub-2.onrender.com",
+      inquiryLink: "https://institute-hub-2.onrender.com/enquiry"
+    },
+    {
+      title: "SPF Invoicing Portal",
+      category: "Automation & ERP",
+      desc: "A custom ERP portal designed for small businesses to automate bill generations, track tax rates, manage inventory databases, and export PDF statements.",
+      features: ["One-Click PDF Invoice Generator", "Automated Tax Calculation Engine", "Client Statement Mailing System"],
+      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Redux"],
+      gradient: "linear-gradient(135deg, #10b981, #06b6d4)",
+      link: "http://spf.zazpu.in"
     }
   ];
 
@@ -69,7 +110,7 @@ export default function Portfolio() {
                 Delivering High-Performance <span className="gradient-text">Applications</span>
               </h1>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '540px' }}>
-                Browse through our portfolio of custom-engineered school management ERPs, automated CRMs, budgeting trackers, and business websites.
+                Browse through our portfolio of custom-built school management ERPs, automated CRMs, budgeting trackers, and business websites.
               </p>
             </div>
             <div style={{ height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -163,11 +204,27 @@ export default function Portfolio() {
                           ))}
                         </div>
 
-                        <Magnetic>
-                          <button onClick={() => alert(`Navigating to Case Study of ${project.title}`)} className="btn btn-secondary" style={{ padding: '0.6rem 1.2rem', fontSize: '0.88rem' }}>
-                            Case Analysis <ExternalLink size={14} />
-                          </button>
-                        </Magnetic>
+                        <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+                          <Magnetic>
+                            <button onClick={() => handleOpenProjectModal(project)} className="btn btn-secondary" style={{ padding: '0.6rem 1.2rem', fontSize: '0.88rem' }}>
+                              Case Analysis
+                            </button>
+                          </Magnetic>
+                          {project.link && (
+                            <Magnetic>
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ padding: '0.6rem 1.2rem', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}>
+                                Visit Live <ExternalLink size={14} />
+                              </a>
+                            </Magnetic>
+                          )}
+                          {project.inquiryLink && (
+                            <Magnetic>
+                              <a href={project.inquiryLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '0.6rem 1.2rem', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none', background: 'transparent', border: '1px solid var(--color-secondary)', color: 'var(--color-secondary)' }}>
+                                Inquiry Form <ExternalLink size={14} />
+                              </a>
+                            </Magnetic>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -177,6 +234,18 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {selectedProject && (
+        <Modal3D
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title={selectedProject.title}
+          subtitle={selectedProject.category}
+          content={`${selectedProject.desc}\n\nProject Architecture & Core Deliverables:\n• ${selectedProject.features.join('\n• ')}`}
+          tags={selectedProject.tech}
+          gradient={selectedProject.gradient}
+        />
+      )}
 
       <style>{`
         @media (min-width: 992px) {

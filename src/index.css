@@ -1537,6 +1537,7 @@ body.light-theme .footer-logo-subtitle {
   transform: translateY(0);
 }
 
+
 /* ==========================================================================
    Animated Gradient Background
    ========================================================================== */
@@ -1679,6 +1680,12 @@ body.light-theme .noise-overlay {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+}
+
+/* Custom Cursor Override for Cookie Consent */
+.cookie-consent-card,
+.cookie-consent-card * {
+  cursor: auto !important;
 }
 
 

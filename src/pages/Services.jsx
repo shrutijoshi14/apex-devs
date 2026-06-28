@@ -8,9 +8,19 @@ import { Link } from 'react-router-dom';
 import Magnetic from '../components/Magnetic';
 import DropsHeaderVisual from '../components/DropsHeaderVisual';
 import Tilt3D from '../components/Tilt3D';
+import Modal3D from '../components/Modal3D';
 
 export default function Services() {
   const [activeCategory, setActiveCategory] = useState("web-dev");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+  const [isPrimaryGradient, setIsPrimaryGradient] = useState(true);
+
+  const handleOpenServiceModal = (service, isPrimary) => {
+    setSelectedService(service);
+    setIsPrimaryGradient(isPrimary);
+    setModalOpen(true);
+  };
 
   const serviceCategories = [
     {
@@ -22,7 +32,7 @@ export default function Services() {
           icon: <Globe size={28} />,
           title: "Business Websites",
           subtitle: "Corporate Presence & Lead Capture",
-          desc: "We engineer pixel-perfect, SEO-ready corporate websites that project authority, validate customer trust, and generate inbound leads.",
+          desc: "We build pixel-perfect, SEO-ready corporate websites that project authority, validate customer trust, and generate inbound leads.",
           features: ["Mobile-first Responsive Design", "Search Engine Optimization (SEO)", "CMS Integration (headless/custom)"],
           tech: ["React.js", "Vite", "HTML5/CSS3", "Framer Motion"]
         },
@@ -38,7 +48,7 @@ export default function Services() {
           icon: <Laptop size={28} />,
           title: "Custom Web Applications",
           subtitle: "Tailored Business Software",
-          desc: "Have a unique business model? We build bespoke cloud-based applications engineered to solve operational bottlenecks and automate workflows.",
+          desc: "Have a unique business model? We build bespoke cloud-based applications built to solve operational bottlenecks and automate workflows.",
           features: ["Cloud Scalable Architecture", "Custom Dashboard Analytics", "Real-time Synchronization"],
           tech: ["React.js", "Node.js", "Express", "REST APIs"]
         },
@@ -202,7 +212,7 @@ export default function Services() {
                 Bespoke Solutions, <span className="gradient-text">Zero Compromises</span>
               </h1>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '540px' }}>
-                Explore our professional services and discover how custom web engineering can automate operations and boost your bottom line.
+                Explore our professional services and discover how custom web development can automate operations and boost your bottom line.
               </p>
             </div>
             <div style={{ height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -289,21 +299,42 @@ export default function Services() {
                     </ul>
                   </div>
 
-                  {/* Tech Badges at the bottom */}
-                  <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center', borderTop: '1px solid var(--border-glass)', paddingTop: '1.2rem' }}>
-                    {service.tech.map((t, tIdx) => (
-                      <span key={tIdx} style={{ 
-                        background: 'rgba(255,255,255,0.03)', 
-                        border: '1px solid var(--border-glass)',
-                        padding: '0.25rem 0.6rem', 
-                        borderRadius: '4px', 
-                        fontSize: '0.75rem',
+                  {/* Tech Badges & Interactive details link */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-glass)', paddingTop: '1.2rem' }}>
+                    <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                      {service.tech.map((t, tIdx) => (
+                        <span key={tIdx} style={{ 
+                          background: 'rgba(255,255,255,0.03)', 
+                          border: '1px solid var(--border-glass)',
+                          padding: '0.25rem 0.6rem', 
+                          borderRadius: '4px', 
+                          fontSize: '0.75rem',
+                          fontWeight: 600,
+                          color: 'var(--text-main)'
+                        }}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => handleOpenServiceModal(service, idx % 2 === 0)}
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: idx % 2 === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
                         fontWeight: 600,
-                        color: 'var(--text-main)'
-                      }}>
-                        {t}
-                      </span>
-                    ))}
+                        fontSize: '0.88rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        padding: 0
+                      }}
+                      className="animated-link"
+                    >
+                      Learn More <ArrowRight size={14} />
+                    </button>
                   </div>
                 </div>
               </Tilt3D>
@@ -330,6 +361,18 @@ export default function Services() {
           </Tilt3D>
         </div>
       </section>
+
+      {selectedService && (
+        <Modal3D
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title={selectedService.title}
+          subtitle={selectedService.subtitle}
+          content={`${selectedService.desc}\n\nTechnical Specifications & Deliverables:\n• ${selectedService.features.join('\n• ')}`}
+          tags={selectedService.tech}
+          gradient={isPrimaryGradient ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))' : 'linear-gradient(135deg, var(--color-secondary), var(--color-primary))'}
+        />
+      )}
 
       <style>{`
         .tabs-container {

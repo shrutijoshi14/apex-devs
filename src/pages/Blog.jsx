@@ -15,7 +15,7 @@ export default function Blog() {
       title: "How Custom CRMs Automate Client Pipelines",
       category: "CRM Solutions",
       date: "June 12, 2026",
-      author: "Apex Engineering",
+      author: "Apex Devs Team",
       snippet: "Discover how moving away from spreadsheets to dedicated, automated CRM dashboards can increase your sales response time and deal conversion speeds.",
       gradient: "linear-gradient(135deg, #06b6d4, #10b981)"
     },
@@ -23,7 +23,7 @@ export default function Blog() {
       title: "School ERP System Design Guidelines",
       category: "Business Automation",
       date: "May 28, 2026",
-      author: "Apex Engineering",
+      author: "Apex Devs Team",
       snippet: "Developing software for academic institutes requires careful planning around database normalization, role permissions, and invoicing systems.",
       gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)"
     },
@@ -31,7 +31,7 @@ export default function Blog() {
       title: "Leveraging React for Ultra-Fast Landing Pages",
       category: "Web Development",
       date: "April 15, 2026",
-      author: "Apex Engineering",
+      author: "Apex Devs Team",
       snippet: "Web performance affects SEO rankings. We analyze codebase splitting, image format compression, and rendering optimization strategies.",
       gradient: "linear-gradient(135deg, #ec4899, #f59e0b)"
     },
@@ -70,10 +70,10 @@ export default function Blog() {
             <div style={{ textAlign: 'left' }}>
               <span className="section-tag" style={{ display: 'inline-block', marginBottom: '0.8rem' }}>Company Journal</span>
               <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', lineHeight: '1.2', fontWeight: 700, marginBottom: '1.5rem' }}>
-                Insights on <span className="gradient-text">Web Engineering</span>
+                Insights on <span className="gradient-text">Web Development</span>
               </h1>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '540px' }}>
-                We share engineering guides on building scalable SaaS backends, design rules for conversion layouts, and ERP system audits.
+                We share technical guides on building scalable SaaS backends, design rules for conversion layouts, and ERP system audits.
               </p>
             </div>
             <div style={{ height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

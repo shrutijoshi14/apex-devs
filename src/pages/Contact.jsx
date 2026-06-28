@@ -85,7 +85,7 @@ export default function Contact() {
             <div style={{ textAlign: 'left' }}>
               <span className="section-tag" style={{ display: 'inline-block', marginBottom: '0.8rem' }}>Initiate Scoping</span>
               <h1 style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)', lineHeight: '1.2', fontWeight: 700, marginBottom: '1.5rem' }}>
-                Let's Engineer Your <span className="gradient-text">Next System</span>
+                Let's Build Your <span className="gradient-text">Next System</span>
               </h1>
               <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', maxWidth: '540px' }}>
                 Have a project in mind or need assistance with digital automation? Let's trace out a solution blueprint.
@@ -110,7 +110,7 @@ export default function Contact() {
                   <CheckCircle size={54} style={{ color: 'var(--color-secondary)', marginBottom: '1.5rem' }} />
                   <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '1rem' }}>Consultation Scheduled!</h2>
                   <p style={{ fontSize: '1.02rem', lineHeight: '1.7', marginBottom: '2rem' }}>
-                    Thank you for contacting Apex Devs. Our engineering lead will audit your requirements and email you within 24 hours to schedule a Zoom consultation.
+                    Thank you for contacting Apex Devs. Our development lead will audit your requirements and email you within 24 hours to schedule a Zoom consultation.
                   </p>
                   <button onClick={() => setSubmitSuccess(false)} className="btn btn-primary">
                     Submit Another Query
